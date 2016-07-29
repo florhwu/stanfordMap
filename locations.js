@@ -92,14 +92,17 @@ function zoomin() {
                 var mapNew = document.getElementById(img[i].name).getBoundingClientRect();
                 var mapViewer = document.getElementById("mapViewer").getBoundingClientRect();
 
-                var k_1 = (mapNew.right - mapNew.left)/(mapOld.right - mapOld.left);
-                var k_2 = (mapNew.bottom - mapNew.top)/(mapOld.bottom - mapOld.top);
+                var k_1 = (mapOld.right - mapOld.left)/(mapNew.right - mapNew.left);
+                var k_2 = (mapOld.bottom - mapOld.top)/(mapNew.bottom - mapNew.top);
 
-                var x = ((mapViewer.right - mapViewer.left)/2 - mapOld.left)/k_1;
-                var y = ((mapViewer.bottom - mapViewer.top)/2 - mapOld.top)/k_2;
+                var centerX = mapViewer.left + (mapViewer.right - mapViewer.left)/2;
+                var centerY = mapViewer.top + (mapViewer.bottom - mapViewer.top)/2;
 
-                var move_x = (mapViewer.left + (mapViewer.right - mapViewer.left)/2) - x;
-                var move_y = (mapViewer.top + (mapViewer.bottom - mapViewer.top)/2) - y;
+                var x = (centerX - mapOld.left)/k_1;
+                var y = (centerY - mapOld.top)/k_2;
+
+                var move_x = centerX - x;
+                var move_y = centerY - y;
 
                 document.getElementById(img[i].name).style.left = move_x + "px";
                 document.getElementById(img[i].name).style.top = move_y + "px";
@@ -161,7 +164,7 @@ function scrollright() {
 
 //listenrs
 document.addEventListener("mousedown",handleMouseDown,false); 
-document.addEventListener("dblclick",handleDblClick,false); 
+document.getElementById("mapViewer").addEventListener("dblclick",handleDblClick,false); 
 
 //handle drag movements by calling the mousemove listener and passing in parameters 
 function handleMouseDown() {
@@ -213,13 +216,10 @@ function handleDblClick() {
 
     var cursorX = event.screenX;
     var cursorY = event.screenY; 
-    console.log("cursor x: " + cursorX + " | cursor y: " + cursorY);
-    console.log("center x: " + centerX + " | center y" + centerY);
 
     //line div mid line with img mid line 
     var mapX = centerX - cursorX;
     var mapY = centerY - cursorY;
-    console.log("map x: " + mapX + " | map y" + mapY);
 
     document.getElementById(img[mapSize].name).style.left = (map.left + mapX) + "px";
     document.getElementById(img[mapSize].name).style.top = (map.top + mapY) + "px";
