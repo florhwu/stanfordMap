@@ -162,12 +162,19 @@ function scrollright() {
     document.getElementById(img[mapSize].name).style.left = (map.left + halfWidth) + "px";  
 }
 
+function lis(event) {
+    handleMouseDown(event);
+}
+
+function l(event) {
+    handleDblClick(event);
+}
 //listenrs
-document.addEventListener("mousedown",handleMouseDown,false); 
-document.getElementById("mapViewer").addEventListener("dblclick",handleDblClick,false); 
+document.addEventListener("mousedown",lis,false); 
+document.getElementById("mapViewer").addEventListener("dblclick",l,false); 
 
 //handle drag movements by calling the mousemove listener and passing in parameters 
-function handleMouseDown() {
+function handleMouseDown(event) {
     event.preventDefault();
 
     var map = document.getElementById(img[mapSize].name).getBoundingClientRect();
@@ -180,7 +187,7 @@ function handleMouseDown() {
     var width = cursorX - (map.left);
 
     function listener(event) {
-        drag(width, height);
+        drag(width, height, event);
     }
 
     document.addEventListener("mousemove", listener, false); 
@@ -196,8 +203,8 @@ function handleMouseDown() {
 }
 
 //the actual drag function called by the mousemove listener
-function drag(width, height) {
-
+function drag(width, height, event) {
+    event.preventDefault();
     var cursorX = event.clientX;
     var cursorY = event.clientY; 
     
@@ -207,7 +214,7 @@ function drag(width, height) {
 }
 
 //center map on doubleclicks
-function handleDblClick() {
+function handleDblClick(event) {
     var map = document.getElementById(img[mapSize].name).getBoundingClientRect();
     var mapViewer = document.getElementById("mapViewer").getBoundingClientRect();
 
