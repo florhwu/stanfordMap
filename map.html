@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stanford Map</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="./map.css">
+</head>
+
+<body>
+<h1>Map of Stanford</h1>
+<div id='mapViewer'>
+    <img id="s"  class='map' src="./img/map-s.gif" 
+    style="visibility:hidden;">
+    <img id="m" class='map' src="./img/map-m.gif" 
+    style="visibility:hidden;"> 
+    <img id="l" class='map' src="./img/map-l.gif" 
+    style="visibility:hidden;">
+    <img id="xl" class='map' src="./img/map-xl.gif">
+</div>
+
+<!--nav icons by Denis Mikhutin form https://www.iconfinder.com/icons-->
+<div id='nav'>
+    <img src="./icon/up.png" class="icon" id="up" alt="up" onclick="scrollup()">
+    <img src="./icon/left.png" class="icon" id="left" alt="left" onclick="scrollleft()">
+    <img src="./icon/right.png" class="icon" id="right" alt="right" onclick="scrollright()">
+    <img src="./icon/down.png" class="icon" id="down" alt="down" onclick="scrolldown()">
+
+<!--zoom icons from https://www.iconfinder.com/icons (anoynomous)-->
+    <img src="./icon/zoomin.png" class="icon" id="in" alt="zoomin" onclick="zoomin()">
+    <img src="./icon/zoomout.png" class="icon" id="out" alt="zoomout" onclick="zoomout()">
+</div>
+
+<script type="text/javascript" src="./locations.js"></script>
+</body>
+</html>
